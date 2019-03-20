@@ -1,9 +1,10 @@
-package main
+package stat_test
 
 import (
 	"fmt"
 	"testing"
 
+	"github.com/evalle/stat/stat"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,7 +33,7 @@ func TestMinData(t *testing.T) {
 
 	for i, item := range table {
 		t.Run(fmt.Sprintf("case #%d", i+1), func(t *testing.T) {
-			assert.Equal(t, item.expected, min(item.input))
+			assert.Equal(t, item.expected, stat.Min(item.input))
 		})
 	}
 }
@@ -62,7 +63,7 @@ func TestSortedData(t *testing.T) {
 
 	for i, item := range table {
 		t.Run(fmt.Sprintf("case #%d", i+1), func(t *testing.T) {
-			assert.Equal(t, item.expected, sortedDataSet(item.input))
+			assert.Equal(t, item.expected, stat.SortedDataSet(item.input))
 		})
 	}
 }
@@ -92,7 +93,7 @@ func TestMedian(t *testing.T) {
 	}
 	for i, item := range table {
 		t.Run(fmt.Sprintf("case #%d", i+1), func(t *testing.T) {
-			assert.Equal(t, item.expected, median(item.input))
+			assert.Equal(t, item.expected, stat.Median(item.input))
 		})
 	}
 }
