@@ -32,13 +32,59 @@ func extract(rows [][]string) (temp, pressure, windSpd []string) {
 }
 
 func min(temp, pressure, windSpd []string) (string, string, string) {
-	return stat.Min(temp), stat.Min(pressure), stat.Min(windSpd)
+	statMinTemp, err := stat.Min(temp)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statMinPressure, err := stat.Min(pressure)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statMinWindSpd, err := stat.Min(windSpd)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return statMinTemp, statMinPressure, statMinWindSpd
 }
 
 func median(temp, pressure, windSpd []string) (string, string, string) {
-	return stat.Median(stat.SortedDataSet(temp)),
-		stat.Median(stat.SortedDataSet(pressure)),
-		stat.Median(stat.SortedDataSet(windSpd))
+	//
+	statSortedDataSetTemp, err := stat.SortedDataSet(temp)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statMedianTemp, err := stat.Median(statSortedDataSetTemp)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//
+	statSortedDataSetPressure, err := stat.SortedDataSet(pressure)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statMedianPressure, err := stat.Median(statSortedDataSetPressure)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//
+	statSortedDataSetWindSpd, err := stat.SortedDataSet(windSpd)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statMedianWindSpd, err := stat.Median(statSortedDataSetWindSpd)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return statMedianTemp, statMedianPressure, statMedianWindSpd
 }
 
 func main() {
