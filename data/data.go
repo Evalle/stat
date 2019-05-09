@@ -28,23 +28,3 @@ func Read(data FetchParser) ([][]string, error) {
 
 	return r, err
 }
-
-// // ReadData reads the csv data from the file and returns rows
-// func ReadData(name string) [][]string {
-// 	f, err := os.Open(name)
-// 	if err != nil {
-// 		log.Fatalf("Cannot open '%s': %s\n", name, err.Error())
-// 	}
-// 	defer f.Close()
-
-// 	r := csv.NewReader(f)
-
-// 	r.Comma = '\t'
-
-// 	rows, err := r.ReadAll()
-// 	if err != nil {
-// 		log.Fatalln("Cannot read CSV data:", err.Error())
-// 	}
-
-// 	return rows
-// }
